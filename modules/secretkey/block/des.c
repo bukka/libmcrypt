@@ -577,10 +577,6 @@ WIN32DLL_DEFINE int _mcrypt_get_block_size()
 {
 	return 8;
 }
-WIN32DLL_DEFINE int _is_block_algorithm()
-{
-	return 1;
-}
 WIN32DLL_DEFINE int _mcrypt_get_key_size()
 {
 	return 8;
@@ -660,6 +656,8 @@ WIN32DLL_DEFINE word32 _mcrypt_algorithm_version()
 {
 	return 20010801;
 }
+
+#include "../common/convenience.c"
 
 #ifdef WIN32
 # ifdef USE_LTDL
