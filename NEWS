@@ -1,3 +1,6 @@
+September 9 2003:
+- Restructuring layout of algorithms.
+
 June 21 2003:
 - Corrected some bug in configure, which now works perfectly
   in solaris. Patch by Dustin Mitchell <dustin@ywlcs.org>

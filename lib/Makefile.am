@@ -1,5 +1,5 @@
 DEFS = @DEFS@ -DLIBDIR=\"$(libdir)/@PACKAGE@/\" 
-INCLUDES = -I. -I.. $(INCLTDL) -I../modules/algorithms -I../modules/modes
+INCLUDES = -I. -I.. $(INCLTDL) -I../modules/publickey -I../modules/secretkey/stream -I../modules/secretkey/block -I../modules/modes
 include_HEADERS = mcrypt.h 
 EXTRA_DIST = libdefs.h bzero.h xmemory.h mcrypt_modules.h mcrypt_internal.h \
  libmcrypt.sym win32_comp.h mcrypt.h.in libmcrypt-config.in libmcrypt.m4
@@ -28,7 +28,9 @@ mcrypt_symb.c: mcrypt_internal.h
 		if test x$$f = xthreeway; then f=3-way; \
 		elif test x$$f = xsafer-sk64; then f=safer64; \
 		elif test x$$f = xsafer-sk128; then f=safer128; fi; \
-		if test -f ../modules/algorithms/$$f.c; then cat ../modules/algorithms/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "extern "$$3"();";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/publickey/$$f.c; then cat ../module/publickey/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "extern "$$3"();";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/stream/$$f.c; then cat ../modules/secretkey/stream/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "extern "$$3"();";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/block/$$f.c; then cat ../modules/secretkey/block/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "extern "$$3"();";}' >> mcrypt_symb.c 2>/dev/null; fi; \
 		if test -f ../modules/modes/$$i.c; then cat ../modules/modes/$$i.c 2>/dev/null|grep define|grep LTX|awk '{print "extern "$$3"();";}' >> mcrypt_symb.c 2>/dev/null; fi; \
 	done
 	@echo "" >> mcrypt_symb.c
@@ -39,8 +41,12 @@ mcrypt_symb.c: mcrypt_internal.h
 		elif test x$$f = xsafer-sk64; then f=safer64; \
 		elif test x$$f = xsafer-sk128; then f=safer128; fi; \
 		if test -f ../modules/modes/$$i.c; then echo "	{\"$$i\", NULL}, " >> mcrypt_symb.c 2>/dev/null; fi; \
-		if test -f ../modules/algorithms/$$f.c; then echo "	{\"$$i\", NULL}, " >> mcrypt_symb.c 2>/dev/null; fi; \
-		if test -f ../modules/algorithms/$$f.c; then cat ../modules/algorithms/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "\t{\""$$3"\", "$$3"},";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/publickey/$$f.c; then echo "	{\"$$i\", NULL}, " >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/stream/$$f.c; then echo "	{\"$$i\", NULL}, " >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/block/$$f.c; then echo "	{\"$$i\", NULL}, " >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/publickey/$$f.c; then cat ../modules/publickey/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "\t{\""$$3"\", "$$3"},";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/stream/$$f.c; then cat ../modules/secretkey/stream/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "\t{\""$$3"\", "$$3"},";}' >> mcrypt_symb.c 2>/dev/null; fi; \
+		if test -f ../modules/secretkey/block/$$f.c; then cat ../modules/secretkey/block/$$f.c 2>/dev/null|grep define|grep LTX|awk '{print "\t{\""$$3"\", "$$3"},";}' >> mcrypt_symb.c 2>/dev/null; fi; \
 		if test -f ../modules/modes/$$i.c; then cat ../modules/modes/$$i.c 2>/dev/null|grep define|grep LTX|awk '{print "\t{\""$$3"\", "$$3"},";}' >> mcrypt_symb.c 2>/dev/null; fi; \
 	done
 	@echo "	{NULL, NULL}" >> mcrypt_symb.c
