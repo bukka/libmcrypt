@@ -75,11 +75,13 @@ opt_enable_ltdl=$enableval)
 AC_MSG_RESULT($opt_enable_ltdl)
 
 MCRYPT_MODE_MODULES="cbc cfb ctr ecb ncfb nofb ofb stream"
-MCRYPT_ALGORITHM_MODULES="threeway cast-128 gost rijndael-128 safer-sk64 twofish \
- arcfour cast-256 loki97 rijndael-192 saferplus wake \
+MCRYPT_SECRETKEY_BLOCK_MODULES="threeway cast-128 gost rijndael-128 safer-sk64 twofish \
+ cast-256 loki97 rijndael-192 saferplus \
  blowfish-compat des rijndael-256 serpent xtea \
- blowfish enigma rc2 safer-sk128 tripledes"
-
+ blowfish rc2 safer-sk128 tripledes"
+MCRYPT_SECRETKEY_STREAM_MODULES="arcfour enigma panama wake" 
+MCRYPT_PUBLICKEY_BLOCK_MODULES=
+MCRYPT_PUBLICKEY_STREAM_MODULES=
 
 if test "x$opt_enable_ltdl" != xno; then
  touch lib/mcrypt_internal.h
@@ -106,9 +108,21 @@ if test "x$opt_enable_ltdl" != xno; then
  opt_include_algos=no
 
 # create the names of the .la libraries to install
- for i in $MCRYPT_ALGORITHM_MODULES
+ for i in $MCRYPT_SECRETKEY_BLOCK_MODULES
  do \
-  INSTALL_ALGORITHM_MODULES="$INSTALL_ALGORITHM_MODULES $i.la"
+  INSTALL_SECRETKEY_BLOCK_MODULES="$INSTALL_SECRETKEY_BLOCK_MODULES $i.la"
+ done
+ for i in $MCRYPT_SECRETKEY_STREAM_MODULES
+ do \
+  INSTALL_SECRETKEY_STREAM_MODULES="$INSTALL_SECRETKEY_STREAM_MODULES $i.la"
+ done
+ for i in $MCRYPT_PUBLICKEY_BLOCK_MODULES
+ do \
+  INSTALL_PUBLICKEY_BLOCK_MODULES="$INSTALL_PUBLICKEY_BLOCK_MODULES $i.la"
+ done
+ for i in $MCRYPT_PUBLICKEY_STREAM_MODULES
+ do \
+  INSTALL_PUBLICKEY_STREAM_MODULES="$INSTALL_PUBLICKEY_STREAM_MODULES $i.la"
  done
 
  for i in $MCRYPT_MODE_MODULES
@@ -116,24 +130,41 @@ if test "x$opt_enable_ltdl" != xno; then
   INSTALL_MODE_MODULES="$INSTALL_MODE_MODULES $i.la"
  done
 
- AC_SUBST(INSTALL_ALGORITHM_MODULES)
+ AC_SUBST(INSTALL_SECRETKEY_BLOCK_MODULES)
+ AC_SUBST(INSTALL_SECRETKEY_STREAM_MODULES)
+ AC_SUBST(INSTALL_PUBLICKEY_BLOCK_MODULES)
+ AC_SUBST(INSTALL_PUBLICKEY_STREAM_MODULES)
  AC_SUBST(INSTALL_MODE_MODULES)
 
 else
- for i in $MCRYPT_ALGORITHM_MODULES
+ for i in $MCRYPT_SECRETKEY_BLOCK_MODULES
  do \
-  NOINSTALL_ALGORITHM_MODULES="$NOINSTALL_ALGORITHM_MODULES $i.la"
+  NOINSTALL_SECRETKEY_BLOCK_MODULES="$NOINSTALL_SECRETKEY_BLOCK_MODULES $i.la"
  done
-
+ for i in $MCRYPT_SECRETKEY_STREAM_MODULES
+ do \
+  NOINSTALL_SECRETKEY_STREAM_MODULES="$NOINSTALL_SECRETKEY_STREAM_MODULES $i.la"
+ done
+ for i in $MCRYPT_PUBLICKEY_BLOCK_MODULES
+ do \
+  NOINSTALL_PUBLICKEY_BLOCK_MODULES="$NOINSTALL_PUBLICKEY_BLOCK_MODULES $i.la"
+ done
+ for i in $MCRYPT_PUBLICKEY_STREAM_MODULES
+ do \
+  NOINSTALL_PUBLICKEY_STREAM_MODULES="$NOINSTALL_PUBLICKEY_STREAM_MODULES $i.la"
+ done  
  for i in $MCRYPT_MODE_MODULES
  do \
   NOINSTALL_MODE_MODULES="$NOINSTALL_MODE_MODULES $i.la"
  done
 
- AC_SUBST(NOINSTALL_ALGORITHM_MODULES)
+ AC_SUBST(NOINSTALL_SECRETKEY_BLOCK_MODULES)
+ AC_SUBST(NOINSTALL_SECRETKEY_STREAM_MODULES)
+ AC_SUBST(NOINSTALL_PUBLICKEY_BLOCK_MODULES)
+ AC_SUBST(NOINSTALL_PUBLICKEY_STREAM_MODULES)
  AC_SUBST(NOINSTALL_MODE_MODULES)
 
- opt_include_algos="$MCRYPT_MODE_MODULES $MCRYPT_ALGORITHM_MODULES"
+ opt_include_algos="$MCRYPT_MODE_MODULES $MCRYPT_SECRETKEY_BLOCK_MODULES $MCRYPT_SECRETKEY_STREAM_MODULES $MCRYPT_PUBLICKEY_BLOCK_MODULES $MCRYPT_PUBLICKEY_STREAM_MODULES"
  echo "***"
  echo "*** Dynamic loading has been disabled"
 fi
@@ -160,7 +191,10 @@ f=$i ;
 if test x$f = xthreeway; then f=3-way;
 elif test x$f = xsafer-sk64; then f=safer64;
 elif test x$f = xsafer-sk128; then f=safer128; fi;
-test -f modules/algorithms/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/algorithms/$f.lo"
+test -f modules/secretkey/block/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/secretkey/block/$f.lo"
+test -f modules/secretkey/stream/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/secretkey/stream/$f.lo"
+test -f modules/publickey/block/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/publickey/block/$f.lo"
+test -f modules/publickey/stream/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/publickey/stream/$f.lo"
 test -f modules/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/modes/$i.lo"
 done
 
@@ -222,4 +256,4 @@ AC_OUTPUT_COMMANDS([
  chmod +x lib/libmcrypt-config
 ])
 
-AC_OUTPUT([Makefile libmcrypt.spec lib/Makefile doc/Makefile src/Makefile modules/Makefile modules/modes/Makefile modules/algorithms/Makefile lib/mcrypt.h lib/libmcrypt-config])
+AC_OUTPUT([Makefile libmcrypt.spec lib/Makefile doc/Makefile src/Makefile modules/Makefile modules/modes/Makefile modules/publickey/Makefile modules/publickey/stream/Makefile modules/publickey/block/Makefile modules/secretkey/Makefile modules/secretkey/block/Makefile modules/secretkey/stream/Makefile lib/mcrypt.h lib/libmcrypt-config])
