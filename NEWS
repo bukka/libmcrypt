@@ -1,3 +1,7 @@
+October 28 2003:
+- New modules added into the tree. These are NOT linked in yet. Build system
+  is still broken, so no new build yet.
+
 September 9 2003:
 - Restructuring layout of algorithms.
 
