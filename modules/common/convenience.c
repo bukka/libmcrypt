@@ -18,7 +18,6 @@
 #define NOT_APPLICABLE -1
 #endif
 
-
 WIN32DLL_DEFINE _is_block_mode()
 {
 	return IS_BLOCK_MODE;
@@ -39,6 +38,11 @@ WIN32DLL_DEFINE _is_block_algorithm()
 	return IS_BLOCK_ALGORITHM;
 }
 
+WIN32DLL_DEFINE _is_block_algorithm_mode()
+{
+	return IS_BLOCK_ALGORITHM_MODE;
+}
+
 WIN32DLL_DEFINE _is_public_key_algorithm()
 {
 	return IS_PUBLIC_KEY_ALGORITHM;
@@ -47,5 +51,15 @@ WIN32DLL_DEFINE _is_public_key_algorithm()
 WIN32DLL_DEFINE _is_authentication_mechanism()
 {
 	return IS_AUTHENTICATION_MECHANISM;
+}
+
+WIN32DLL_DEFINE _is_encumbered()
+{
+	return ENCUMBRANCE;
+}
+
+WIN32DLL_DEFINE _is_accelerated()
+{
+	return IS_ACCELERATED;
 }
 

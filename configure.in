@@ -191,10 +191,16 @@ f=$i ;
 if test x$f = xthreeway; then f=3-way;
 elif test x$f = xsafer-sk64; then f=safer64;
 elif test x$f = xsafer-sk128; then f=safer128; fi;
-test -f modules/secretkey/block/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/secretkey/block/$f.lo"
-test -f modules/secretkey/stream/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/secretkey/stream/$f.lo"
-test -f modules/publickey/block/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/publickey/block/$f.lo"
-test -f modules/publickey/stream/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/publickey/stream/$f.lo"
+for j in secretkey publickey
+do
+for k in stream block
+do
+for l in `cat modules/$j/$k/list.txt`
+do
+test -f modules/$j/$k/$l/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/$j/$k/$l/$f.lo"
+done
+done
+done
 test -f modules/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/modes/$i.lo"
 done
 
