@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 DEFS = @DEFS@ 
 
-include ../Common/Modules.inc
+include ../common/Modules.inc
 
 EXTRA_DIST = arcfour.h enigma.h panama.h wake.h
 
