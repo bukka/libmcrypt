@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 DEFS = @DEFS@ 
 
-include ../common/Modules.inc
+include ${top_srcdir}/modules/common/Modules.inc
 
 EXTRA_DIST = cast-128.h cast-128_sboxes.h cast-256.h
 

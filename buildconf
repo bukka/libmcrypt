@@ -1,5 +1,7 @@
 #! /bin/sh
 
+/bin/sh assemble.sh
+
 aclocal && \
 libtoolize --automake -c --force --ltdl && \
 autoheader  && \

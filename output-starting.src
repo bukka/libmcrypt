@@ -1,0 +1,1 @@
+AC_OUTPUT([Makefile libmcrypt.spec lib/Makefile doc/Makefile src/Makefile modules/Makefile modules/modes/Makefile modules/publickey/Makefile modules/publickey/stream/Makefile modules/publickey/block/Makefile modules/secretkey/Makefile modules/secretkey/block/Makefile modules/secretkey/stream/Makefile
