@@ -1,0 +1,4 @@
+
+#undef IS_BLOCK_ALGORITHM
+#define IS_BLOCK_ALGORITHM TRUE
+

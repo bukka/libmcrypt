@@ -409,10 +409,6 @@ WIN32DLL_DEFINE int _mcrypt_get_block_size()
 {
 	return 16;
 }
-WIN32DLL_DEFINE int _is_block_algorithm()
-{
-	return 1;
-}
 WIN32DLL_DEFINE int _mcrypt_get_key_size()
 {
 	return 32;
