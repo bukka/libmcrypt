@@ -37,9 +37,7 @@
  * lowest-numbered, in the bit string.
  */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 
 #define _mcrypt_set_key gost_LTX__mcrypt_set_key
 #define _mcrypt_encrypt gost_LTX__mcrypt_encrypt

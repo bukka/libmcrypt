@@ -63,9 +63,7 @@ Mean:         3392 cycles =     7.5 mbits/sec
 
 */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "saferplus.h"
 #include <stdlib.h>
 

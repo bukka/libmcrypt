@@ -24,9 +24,7 @@
 /* $Id$ */
 
 /******************* External Headers *****************************************/
-
-/******************* Local Headers ********************************************/
-#include <libdefs.h>
+#include <mcrypt_common_inc.h>
 
 #include <mcrypt_modules.h>
 #include "safer.h"

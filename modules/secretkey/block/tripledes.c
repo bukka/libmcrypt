@@ -18,8 +18,7 @@
 
 /* $Id$ */
 
-#include <libdefs.h>
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "tripledes.h"
 
 #define _mcrypt_set_key tripledes_LTX__mcrypt_set_key

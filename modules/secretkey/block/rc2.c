@@ -15,9 +15,7 @@
 
 /* $Id$ */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 /* #include <assert.h> */
 #include "rc2.h"
 

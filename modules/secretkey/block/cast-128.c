@@ -15,9 +15,7 @@
 
 /* $Id$ */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "cast-128.h"
 
 #define _mcrypt_set_key cast_128_LTX__mcrypt_set_key

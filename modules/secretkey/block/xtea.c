@@ -10,9 +10,7 @@
  * All modifications are placed under the license of libmcrypt.
  */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 
 #define _mcrypt_set_key xtea_LTX__mcrypt_set_key
 #define _mcrypt_encrypt xtea_LTX__mcrypt_encrypt

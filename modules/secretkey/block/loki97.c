@@ -63,9 +63,7 @@ Mean:         2186 cycles =    11.7 mbits/sec
 */
 
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 
 #define _mcrypt_set_key loki97_LTX__mcrypt_set_key
 #define _mcrypt_encrypt loki97_LTX__mcrypt_encrypt

@@ -44,9 +44,7 @@
 
  */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "twofish.h"
 
 #define _mcrypt_set_key twofish_LTX__mcrypt_set_key

@@ -39,9 +39,7 @@ Decrypt:       915 cycles =    28.0 mbits/sec
 Mean:          941 cycles =    27.2 mbits/sec
 */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "serpent.h"
 
 #define _mcrypt_set_key serpent_LTX__mcrypt_set_key

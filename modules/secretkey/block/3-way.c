@@ -11,9 +11,7 @@
 
 /* $Id$ */
 
-#include <libdefs.h>
-
-#include <mcrypt_modules.h>
+#include <mcrypt_common_inc.h>
 #include "3-way.h"
 
 #define   STRT_E   0x0b0b	/* round constant of first encryption round */
