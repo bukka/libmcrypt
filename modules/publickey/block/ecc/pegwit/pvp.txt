@@ -1,0 +1,27 @@
+Comparison from
+http://www.users.globalnet.co.uk/~firstcut/pgpfaq.html
+
+Block   RSA     EC
+Cipher  Key     Key
+Length  Length  Length
+----------------------
+80      1024    160
+112     2048    224
+128     3072    256
+192     7680    384
+256     15360   512
+
+and from 
+http://www.Certicom.com/ecc/wecc4.htm
+
+Time to RSA/DSA ECC    RSA/ECC
+break   key     key    key size
+in      size    size   ratio
+MIPS
+years
+-------------------------------
+10^4    512     106     5 : 1
+10^8    768     132     6 : 1
+10^11   1,024   160     7 : 1
+10^20   2,048   210     10 : 1
+10^78   21,000  600     35 : 1

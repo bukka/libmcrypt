@@ -1,0 +1,7 @@
+# Microsoft Developer Studio Generated Dependency File, included by PEGWIT32DLL.mak
+
+..\pegwit.c : \
+	"..\binascw.h"\
+	"..\keyring.h"\
+	"..\pegwitw.h"\
+	

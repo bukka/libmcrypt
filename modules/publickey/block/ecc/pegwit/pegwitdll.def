@@ -1,0 +1,32 @@
+LIBRARY      PEGWITDLL
+DESCRIPTION  'Pegwit'
+
+EXPORTS
+    FreeKeyring
+    LoadKeyring
+    SaveKeyring
+    SetDefKey
+    DelKey
+    GetKeyPtr
+    GetNumKeys
+    AddKey
+    FindKey
+    FindKeySubstr
+
+    dll_make_key
+    dll_sign
+    dll_verify
+    dll_encrypt_pk
+    dll_encrypt_c
+    dll_decrypt_pk
+    dll_decrypt_c
+
+    InitECC
+
+    checkEndian
+    burn_stack
+
+    burnBinasc
+
+    prng_init
+    prng_set_rnd

@@ -1,0 +1,36 @@
+New to Pegwit 9 alfa.04:
+
++ DLL interface
++ Code cleaned up
+
+
+New to Pegwit 9 alfa.03:
+
++ ECC polynomial code replaced with normal basis (onb) code
++ Blowfish replaced with Rijndeal (256 bit for conventional encryption,
+  224 bit for public key encryption)
++ SHA1 replaced with SHA256
++ double barreled hashing removed (it was not working properly anyway)
++ commandline now supports keyring file (pegwit.pkr)
++ only one line is used to make secret key
++ much faster
+
+
+New to Pegwit 9 alfa.02:
+
++ Nyberg-Rueppel signature replaced with DSA signature
+- still very slow
+
+
+New to Pegwit 9 alfa.01:
+
++ all old ECC code replaced with Mike Rosing's ECC code
+  (http://www.manning.com/Rosing/ http://mendota.terracom.net/~eresrch/ )
++ uses one of curves recommended by NIST F2^233
+  (http://csrc.nist.gov/encryption/ )
++ Square replaced with Blowfish in CBC mode (160 bit for conventional encryption,
+  224 bit for public key encryption)
++ Public keys and signatures now use BASE64 encoding instead of HEX(BASE16) encoding
+  so public key now is only 40 character long an signature 80
++ added possibility to encrypt to multiple public keys (encrypt to self)
+- very slow

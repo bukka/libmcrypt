@@ -1,0 +1,24 @@
+
+How to compile PSEC-KEM test programs:
+===================================
+(please read 'readme' file first)
+
+Key Generation Test Program:
+
+  gcc -I $(GMP_INCLUDE_DIR) -o t_keygen t_keygen.c keygen.c random.c sha1.c utils-psec.c utils.c ec_arith.c -L $(GMP_LIB_DIR) -lgmp -lm
+
+Key Encapsulation Test Program:
+
+  gcc -I $(GMP_INCLUDE_DIR) -o t_kem t_kem.c kem.c random.c sha1.c utils-psec.c utils.c ec_arith.c camellia.c -L $(GMP_LIB_DIR) -lgmp -lm
+
+Key Decapsulation Test Program:
+
+  gcc -I $(GMP_INCLUDE_DIR) -o t_kdm t_kdm.c kdm.c random.c sha1.c utils-psec.c utils.c ec_arith.c camellia.c -L $(GMP_LIB_DIR) -lgmp -lm
+
+
+where 
+  $(GMP_INCLUDE_DIR): path to a directory containing the GMP header file gmp.h
+                      example: /usr/local/gmp/include
+  $(GMP_LIB_DIR)    : path to a directory containing GMP library libgmp.a
+  		      (GMP version >= 3.0)
+                      example: /usr/local/gmp/lib

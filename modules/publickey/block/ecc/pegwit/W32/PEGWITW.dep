@@ -1,0 +1,77 @@
+# Microsoft Developer Studio Generated Dependency File, included by PEGWITW.mak
+
+..\binascw.c : \
+	"..\binascw.h"\
+	"..\pegwitw.h"\
+	
+
+..\eliptic.c : \
+	"..\eliptic.h"\
+	"..\field2n.h"\
+	
+
+..\gettimeofday.c : \
+	"c:\msvc6\vc98\include\basetsd.h"\
+	
+
+..\keyring.c : \
+	"..\keyring.h"\
+	
+
+..\lip.c : \
+	"..\lip.h"\
+	
+
+..\onb.c : \
+	"..\field2n.h"\
+	
+
+..\onb_integer.c : \
+	"..\eliptic.h"\
+	"..\field2n.h"\
+	"..\lip.h"\
+	"..\protocols.h"\
+	"..\sha256.h"\
+	
+
+..\PEGWIT.RC : \
+	"..\PEGWIT.ICO"\
+	"..\RC.H"\
+	
+
+..\pegwitw.c : \
+	"..\binascw.h"\
+	"..\eliptic.h"\
+	"..\field2n.h"\
+	"..\keyring.h"\
+	"..\pegwitw.h"\
+	"..\pgwecc.h"\
+	"..\protocols.h"\
+	"..\rijndael-alg-fst.h"\
+	"..\sha256.h"\
+	
+
+..\pgwecc.c : \
+	"..\eliptic.h"\
+	"..\field2n.h"\
+	"..\lip.h"\
+	"..\pgwecc.h"\
+	"..\protocols.h"\
+	
+
+..\protocols1.c : \
+	"..\eliptic.h"\
+	"..\field2n.h"\
+	"..\protocols.h"\
+	
+
+"..\rijndael-alg-fst.c" : \
+	"..\rijndael-alg-fst.h"\
+	
+
+..\window.c : \
+	"..\keyring.h"\
+	"..\pegwitw.h"\
+	"..\RC.H"\
+	"c:\msvc6\vc98\include\basetsd.h"\
+	
