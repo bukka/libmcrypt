@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = publickey secretkey modes 
+SUBDIRS = common publickey secretkey modes 
 
 
