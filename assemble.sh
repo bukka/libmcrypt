@@ -18,8 +18,6 @@ done
 
 MODULES="$MODULES `cat output-ending.src`"
 
-echo $MODULES
-
 cat configure.in.src > configure.in
 
 echo $MODULES >> configure.in

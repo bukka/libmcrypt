@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 DEFS = @DEFS@ 
 
-include ../common/Modules.inc
+include ${top_srcdir}/common/Modules.inc
 
 EXTRA_DIST = arcfour.h
 
