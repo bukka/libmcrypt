@@ -7,8 +7,8 @@ EXTRA_DIST = twofish.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = twofish.la
+EXTRA_LTLIBRARIES = libtwofish.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
 
-twofish_la_SOURCES = twofish.c
+libtwofish_la_SOURCES = twofish.c

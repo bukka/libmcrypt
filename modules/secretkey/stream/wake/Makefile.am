@@ -7,9 +7,9 @@ EXTRA_DIST = wake.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_STREAM_MODULES@
 
-lib_LTLIBRARIES = wake.la
+EXTRA_LTLIBRARIES = libwake.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_STREAM_MODULES@
 
-wake_la_SOURCES = wake.c
-wake_la_LDFLAGS = $(module_ldflags)
+libwake_la_SOURCES = wake.c
+libwake_la_LDFLAGS = $(module_ldflags)

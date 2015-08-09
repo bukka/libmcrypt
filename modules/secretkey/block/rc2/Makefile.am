@@ -7,8 +7,8 @@ EXTRA_DIST = rc2.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = rc2.la
+EXTRA_LTLIBRARIES = librc2.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
-rc2_la_SOURCES = rc2.c
-rc2_la_LDFLAGS =  $(module_ldflags)
+librc2_la_SOURCES = rc2.c
+librc2_la_LDFLAGS =  $(module_ldflags)

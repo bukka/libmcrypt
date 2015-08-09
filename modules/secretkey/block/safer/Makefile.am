@@ -7,12 +7,12 @@ EXTRA_DIST = safer.h saferplus.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = safer-sk64.la safer-sk128.la saferplus.la
+EXTRA_LTLIBRARIES = libsafer-sk64.la libsafer-sk128.la libsaferplus.la
 
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
-saferplus_la_SOURCES = saferplus.c
-safer_sk64_la_SOURCES = safer64.c
-safer_sk64_la_LDFLAGS = $(module_ldflags)
-safer_sk128_la_SOURCES = safer128.c
-safer_sk128_la_LDFLAGS = $(module_ldflags)
+libsaferplus_la_SOURCES = saferplus.c
+libsafer_sk64_la_SOURCES = safer64.c
+libsafer_sk64_la_LDFLAGS = $(module_ldflags)
+libsafer_sk128_la_SOURCES = safer128.c
+libsafer_sk128_la_LDFLAGS = $(module_ldflags)

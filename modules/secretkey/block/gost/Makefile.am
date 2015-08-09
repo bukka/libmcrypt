@@ -7,9 +7,9 @@ EXTRA_DIST = gost.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = gost.la
-		tripledes.la
+EXTRA_LTLIBRARIES = libgost.la
+		libtripledes.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
-gost_la_SOURCES = gost.c
-gost_la_LDFLAGS =  $(module_ldflags)
+libgost_la_SOURCES = gost.c
+libgost_la_LDFLAGS =  $(module_ldflags)

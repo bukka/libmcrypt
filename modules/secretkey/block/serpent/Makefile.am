@@ -7,9 +7,9 @@ EXTRA_DIST = serpent.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = serpent.la
+EXTRA_LTLIBRARIES = libserpent.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
 
-serpent_la_SOURCES = serpent.c
-serpent_la_LDFLAGS = $(module_ldflags)
+libserpent_la_SOURCES = serpent.c
+libserpent_la_LDFLAGS = $(module_ldflags)

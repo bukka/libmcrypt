@@ -7,8 +7,8 @@ EXTRA_DIST = xtea.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_BLOCK_MODULES@
 
-EXTRA_LTLIBRARIES = xtea.la
+EXTRA_LTLIBRARIES = libxtea.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_BLOCK_MODULES@
-xtea_la_SOURCES = xtea.c
-xtea_la_LDFLAGS = $(module_ldflags)
+libxtea_la_SOURCES = xtea.c
+libxtea_la_LDFLAGS = $(module_ldflags)

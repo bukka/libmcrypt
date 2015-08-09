@@ -7,9 +7,9 @@ EXTRA_DIST = arcfour.h
 
 pkglib_LTLIBRARIES = @INSTALL_SECRETKEY_STREAM_MODULES@
 
-EXTRA_LTLIBRARIES = arcfour.la
+EXTRA_LTLIBRARIES = libarcfour.la
 
 noinst_LTLIBRARIES = @NOINSTALL_SECRETKEY_STREAM_MODULES@
 
-arcfour_la_SOURCES = arcfour.c
-arcfour_la_LDFLAGS = $(module_ldflags)
+libarcfour_la_SOURCES = arcfour.c
+libarcfour_la_LDFLAGS = $(module_ldflags)
