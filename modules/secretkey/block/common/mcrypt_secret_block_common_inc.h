@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-#include <mcrypt_secret_common_inc.h>
+#include <mcrypt_common_inc.h>
 
 #if !defined(word32)
 #define word32 int
