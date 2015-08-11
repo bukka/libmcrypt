@@ -60,7 +60,7 @@
 #endif
 
 
-#ifdef HAVE_READDIR_R
+#if defined(HAVE_READDIR_R) && !defined(_POSIX_C_SOURCE)
 # define _POSIX_C_SOURCE 199506L
 #endif
 

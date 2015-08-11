@@ -2,7 +2,7 @@
 
 noinst_PROGRAMS = ciphertest aestest
 ciphertest_SOURCES = cipher_test.c
-ciphertest_LDADD = ../lib/libmcrypt.la $(LIBLTDL) 
+ciphertest_LDADD = ../libmcrypt.la $(LIBLTDL)
 aestest_SOURCES = aes_test.c
-aestest_LDADD = ../lib/libmcrypt.la $(LIBLTDL) 
+aestest_LDADD = ../libmcrypt.la $(LIBLTDL)
 TESTS = ciphertest aestest

@@ -26,3 +26,4 @@ missing
 *.la
 stamp-h1
 test-driver
+mcrypt_symb.c

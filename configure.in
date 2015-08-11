@@ -80,11 +80,11 @@ opt_enable_ltdl=$enableval)
 AC_MSG_RESULT($opt_enable_ltdl)
 
 MCRYPT_MODE_MODULES="cbc cfb ctr ecb ncfb nofb ofb stream"
-MCRYPT_SECRETKEY_BLOCK_MODULES="threeway cast-128 gost rijndael-128 safer-sk64 twofish \
- cast-256 loki97 rijndael-192 saferplus \
- blowfish-compat des rijndael-256 serpent xtea \
- blowfish rc2 safer-sk128 tripledes"
-MCRYPT_SECRETKEY_STREAM_MODULES="arcfour enigma panama wake" 
+MCRYPT_SECRETKEY_BLOCK_MODULES="threeway" #cast-128 gost rijndael-128 safer-sk64 twofish \
+# cast-256 loki97 rijndael-192 saferplus \
+# blowfish-compat des rijndael-256 serpent xtea \
+# blowfish rc2 safer-sk128 tripledes"
+MCRYPT_SECRETKEY_STREAM_MODULES=#"arcfour enigma panama wake" 
 MCRYPT_PUBLICKEY_BLOCK_MODULES=
 MCRYPT_PUBLICKEY_STREAM_MODULES=
 
@@ -132,7 +132,7 @@ if test "x$opt_enable_ltdl" != xno; then
 
  for i in $MCRYPT_MODE_MODULES
  do \
-  INSTALL_MODE_MODULES="$INSTALL_MODE_MODULES $i.la"
+  INSTALL_MODE_MODULES="$INSTALL_MODE_MODULES lib$i.la"
  done
 
  AC_SUBST(INSTALL_SECRETKEY_BLOCK_MODULES)
@@ -160,7 +160,7 @@ else
  done  
  for i in $MCRYPT_MODE_MODULES
  do \
-  NOINSTALL_MODE_MODULES="$NOINSTALL_MODE_MODULES $i.la"
+  NOINSTALL_MODE_MODULES="$NOINSTALL_MODE_MODULES lib$i.la"
  done
 
  AC_SUBST(NOINSTALL_SECRETKEY_BLOCK_MODULES)
@@ -169,7 +169,12 @@ else
  AC_SUBST(NOINSTALL_PUBLICKEY_STREAM_MODULES)
  AC_SUBST(NOINSTALL_MODE_MODULES)
 
- opt_include_algos="$MCRYPT_MODE_MODULES $MCRYPT_SECRETKEY_BLOCK_MODULES $MCRYPT_SECRETKEY_STREAM_MODULES $MCRYPT_PUBLICKEY_BLOCK_MODULES $MCRYPT_PUBLICKEY_STREAM_MODULES"
+ opt_include_algos="\
+  $MCRYPT_MODE_MODULES \
+  $MCRYPT_SECRETKEY_BLOCK_MODULES \
+  $MCRYPT_SECRETKEY_STREAM_MODULES \
+  $MCRYPT_PUBLICKEY_BLOCK_MODULES \
+  $MCRYPT_PUBLICKEY_STREAM_MODULES"
  echo "***"
  echo "*** Dynamic loading has been disabled"
 fi
@@ -202,11 +207,11 @@ for k in stream block
 do
 for l in `cat modules/$j/$k/list.txt`
 do
-test -f modules/$j/$k/$l/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/$j/$k/$l/$f.lo"
+test -f modules/$j/$k/$l/$f.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/$j/$k/$l/lib$f.lo"
 done
 done
 done
-test -f modules/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/modes/$i.lo"
+test -f modules/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/modes/lib$i.lo"
 done
 
 AC_MSG_RESULT($opt_include_algos)

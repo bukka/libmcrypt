@@ -1,27 +1,40 @@
 ## Process this file with automake to produce Makefile.in
 DEFS = @DEFS@ 
-INCLUDES = -I. -I../.. $(INCLTDL) -I../../lib
+AM_CPPFLAGS = -I. -I../.. $(INCLTDL) -I../../lib
 
-EXTRA_DIST = ofb.h cfb.h nofb.h cbc.h ecb.h stream.h ncfb.h ctr.h
-pkglib_LTLIBRARIES = @INSTALL_MODE_MODULES@
+EXTRA_DIST = ofb.h cfb.h nofb.h cbc.h ecb.h stream.h # ncfb.h ctr.h
 
-EXTRA_LTLIBRARIES = ofb.la cfb.la nofb.la cbc.la ecb.la stream.la ncfb.la \
-	ctr.la
-noinst_LTLIBRARIES = @NOINSTALL_MODE_MODULES@
+noinst_LTLIBRARIES = \
+	libmcryptmodes.la \
+	libofb.la \
+	libcfb.la \
+	libnofb.la \
+	libcbc.la \
+	libecb.la \
+	libstream.la #ncfb.la ctr.la
 
-ofb_la_SOURCES = ofb.c
-ofb_la_LDFLAGS =  -module -avoid-version  -rpath $(pkglibdir)
-ctr_la_SOURCES = ctr.c
-ctr_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
-cfb_la_SOURCES = cfb.c
-cfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir) 
-ncfb_la_SOURCES = ncfb.c
-ncfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)  
-nofb_la_SOURCES = nofb.c
-nofb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)  
-ecb_la_SOURCES = ecb.c
-ecb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)  
-cbc_la_SOURCES = cbc.c
-cbc_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)  
-stream_la_SOURCES = stream.c
-stream_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libmcryptmodes_la_SOURCES =
+libmcryptmodes_la_LIBADD = \
+	libofb.la \
+	libcfb.la \
+	libnofb.la \
+	libcbc.la \
+	libecb.la \
+	libstream.la # libncfb.la libctrl.lo
+
+libofb_la_SOURCES = ofb.c
+libofb_la_LDFLAGS =  -module -avoid-version  -rpath $(pkglibdir)
+#libctr_la_SOURCES = ctr.c
+#libctr_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libcfb_la_SOURCES = cfb.c
+libcfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+#libncfb_la_SOURCES = ncfb.c
+#libncfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libnofb_la_SOURCES = nofb.c
+libnofb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libecb_la_SOURCES = ecb.c
+libecb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libcbc_la_SOURCES = cbc.c
+libcbc_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libstream_la_SOURCES = stream.c
+libstream_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
