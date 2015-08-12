@@ -18,7 +18,7 @@ done
 
 MODULES="$MODULES `cat output-ending.src`"
 
-cat configure.in.src > configure.in
+cat configure.ac.src > configure.ac
 
-echo $MODULES >> configure.in
+echo $MODULES >> configure.ac
 
