@@ -23,18 +23,18 @@ libmcryptmodes_la_LIBADD = \
 	libstream.la # libncfb.la libctrl.lo
 
 libofb_la_SOURCES = ofb.c
-libofb_la_LDFLAGS =  -module -avoid-version  -rpath $(pkglibdir)
+libofb_la_LDFLAGS =  -module -avoid-version
 #libctr_la_SOURCES = ctr.c
-#libctr_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+#libctr_la_LDFLAGS =  -module -avoid-version
 libcfb_la_SOURCES = cfb.c
-libcfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libcfb_la_LDFLAGS =  -module -avoid-version
 #libncfb_la_SOURCES = ncfb.c
-#libncfb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+#libncfb_la_LDFLAGS =  -module -avoid-version
 libnofb_la_SOURCES = nofb.c
-libnofb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libnofb_la_LDFLAGS =  -module -avoid-version
 libecb_la_SOURCES = ecb.c
-libecb_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libecb_la_LDFLAGS =  -module -avoid-version
 libcbc_la_SOURCES = cbc.c
-libcbc_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libcbc_la_LDFLAGS =  -module -avoid-version
 libstream_la_SOURCES = stream.c
-libstream_la_LDFLAGS =  -module -avoid-version -rpath $(pkglibdir)
+libstream_la_LDFLAGS =  -module -avoid-version
