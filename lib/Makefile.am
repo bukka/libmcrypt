@@ -1,17 +1,37 @@
-DEFS = @DEFS@ -DLIBDIR=\"$(libdir)/@PACKAGE@/\" 
-AM_CPPFLAGS = -I. -I.. $(INCLTDL) -I../modules/publickey -I../modules/secretkey/stream -I../modules/secretkey/block -I../modules/modes
-include_HEADERS = mcrypt.h 
-EXTRA_DIST = libdefs.h bzero.h xmemory.h mcrypt_modules.h mcrypt_internal.h \
- libmcrypt.sym win32_comp.h mcrypt.h.in libmcrypt-config.in libmcrypt.m4
+DEFS = @DEFS@ -DLIBDIR=\"$(libdir)/@PACKAGE@/\"
+AM_CPPFLAGS = -I. -I.. $(INCLTDL) \
+  -I../modules/publickey \
+  -I../modules/secretkey/stream \
+  -I../modules/secretkey/block \
+  -I../modules/modes
+
+include_HEADERS = mcrypt.h
+EXTRA_DIST = \
+  libdefs.h \
+  bzero.h \
+  xmemory.h \
+  mcrypt_modules.h \
+  mcrypt_internal.h \
+  libmcrypt.sym \
+  win32_comp.h \
+  mcrypt.h.in \
+  libmcrypt-config.in \
+  libmcrypt.m4
 noinst_LTLIBRARIES = libmcryptlib.la
 
-libmcryptlib_la_SOURCES = mcrypt_extra.c mcrypt.c bzero.c xmemory.c mcrypt_modules.c win32_comp.c mcrypt_threads.c \
-	mcrypt_symb.c 
+libmcryptlib_la_SOURCES = \
+  mcrypt_extra.c \
+  mcrypt.c bzero.c \
+  xmemory.c \
+  mcrypt_modules.c \
+  win32_comp.c \
+  mcrypt_threads.c \
+  mcrypt_symb.c
 
 libmcryptlib_la_LDFLAGS =  \
-	  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
-	  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
-	  -export-symbols libmcrypt.sym @LIBLTDL@ 
+  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
+  -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE) \
+  -export-symbols libmcrypt.sym @LIBLTDL@
 libmcryptlib_la_LIBADD = # @EXTRA_OBJECTS@
 
 m4datadir = $(datadir)/aclocal
