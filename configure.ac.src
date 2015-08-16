@@ -205,7 +205,7 @@ for i in $ALG ; do
       done
     done
   done
-  test -f modules/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/modes/lib$i.lo"
+  test -f modules/secretkey/modes/$i.c && EXTRA_OBJECTS="$EXTRA_OBJECTS ../modules/secretkey/modes/lib$i.lo"
 done
 
 AC_MSG_RESULT($opt_include_algos)
