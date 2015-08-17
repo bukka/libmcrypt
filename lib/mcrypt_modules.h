@@ -61,4 +61,58 @@ mcrypt_always_inline static void memxor(
 	}
 }
 
+/* MODULE STRUCTURES DEFINITIONS */
+
+/* Pre-definitions */
+typedef struct _mcrypt_module mcrypt_module;
+typedef struct _mcrypt_module_sk_mode mcrypt_module_sk_mode;
+
+/**
+ * @brief Module type
+ */
+typedef enum _mcrypt_module_type {
+	MCRYPT_MODULE_SK_MODE = 1
+} mcrypt_module_type;
+
+/* Module Secret Key Mode */
+
+/**
+ * Initialize secret key mode hook
+ * @param module module handle
+ * @param key block key
+ * @param key_len key length
+ * @param iv initial vector
+ * @param iv_len initial vector length
+ */
+typedef size_t (*mcrypt_module_sk_mode_init_t) (
+	mcrypt_module *module,
+	void *key, size_t key_len,
+	void *iv, size_t iv_len);
+
+/**
+ * @brief Secret key mode structure
+ */
+struct _mcrypt_module_sk_mode {
+	/** action hooks */
+	struct {
+		/** initializing */
+		mcrypt_module_sk_mode_init_t init;
+	} hooks;
+};
+
+/**
+ * @brief Main module structure
+ */
+struct _mcrypt_module {
+	/** module type */
+	mcrypt_module_type type;
+	/** mcrypt internal module */
+	void *mim;
+	/** type specific data */
+	union {
+		/** secret key mode data */
+		mcrypt_module_sk_mode mode;
+	} module;
+};
+
 #endif /* MCRYPT_MODULES_H */
