@@ -8,4 +8,4 @@ noinst_LTLIBRARIES = libmcryptsk.la
 libmcryptsk_la_SOURCES =
 libmcryptsk_la_LIBADD = \
 	block/libmcryptskblock.la \
-	modes/libmcryptmodes.la
+	modes/libmcryptskm.la
