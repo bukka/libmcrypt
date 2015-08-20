@@ -90,6 +90,26 @@ typedef size_t (*mcrypt_module_sk_mode_init_t) (
 	void *iv, size_t iv_len);
 
 /**
+ * Set mode state (IV)
+ * @param module module handle
+ * @param iv initial vector
+ * @param iv_len initial vector length
+ */
+typedef size_t (*mcrypt_module_sk_mode_set_state_t) (
+	mcrypt_module *module,
+	void *iv, size_t iv_len);
+
+/**
+ * Get mode state (IV)
+ * @param module module handle
+ * @param iv initial vector (output parameter)
+ * @param iv_len initial vector length (output parameter)
+ */
+typedef size_t (*mcrypt_module_sk_mode_get_state_t) (
+	mcrypt_module *module,
+	void *iv, size_t *iv_len);
+
+/**
  * @brief Secret key mode structure
  */
 struct _mcrypt_module_sk_mode {
@@ -97,6 +117,10 @@ struct _mcrypt_module_sk_mode {
 	struct {
 		/** initializing */
 		mcrypt_module_sk_mode_init_t init;
+		/** set state */
+		mcrypt_module_sk_mode_set_state_t set_state;
+		/** get state */
+		mcrypt_module_sk_mode_set_state_t get_state;
 	} hooks;
 };
 
