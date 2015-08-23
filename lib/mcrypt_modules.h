@@ -63,6 +63,35 @@ mcrypt_always_inline static void memxor(
 
 /* MODULE STRUCTURES DEFINITIONS */
 
+/* Block */
+
+/**
+ * Encrypt block
+ * @param module module handle
+ * @param key key (has to be excactly key size long)
+ * @param pt plain text (has to be excactly block size long)
+ */
+typedef size_t (*mcrypt_module_sk_block_encrypt_t) (
+	mcrypt_module *module,
+	void *key, void *pt);
+
+/**
+ * Decrypt block
+ * @param module module handle
+ * @param key key (has to be excactly key size long)
+ * @param ct cipher text (has to be excactly block size long)
+ */
+typedef size_t (*mcrypt_module_sk_block_encrypt_t) (
+	mcrypt_module *module,
+	void *key, void *ct);
+
+
+/* Mode */
+
+#define MCRYPT_MODULE_F_IV        1
+#define MCRYPT_MODULE_F_BLOCK     2
+#define MCRYPT_MODULE_F_BLOCK_ALG 4
+
 /* Pre-definitions */
 typedef struct _mcrypt_module mcrypt_module;
 typedef struct _mcrypt_module_sk_mode mcrypt_module_sk_mode;
@@ -90,6 +119,12 @@ typedef size_t (*mcrypt_module_sk_mode_init_t) (
 	void *iv, size_t iv_len);
 
 /**
+ * Destroy secret key mode hook
+ * @param module module handle
+ */
+typedef void (*mcrypt_module_sk_mode_destroy_t) (mcrypt_module *module);
+
+/**
  * Set mode state (IV)
  * @param module module handle
  * @param iv initial vector
@@ -110,6 +145,38 @@ typedef size_t (*mcrypt_module_sk_mode_get_state_t) (
 	void *iv, size_t *iv_len);
 
 /**
+ * Encrypt
+ * @param module module handle
+ * @param key encryption key
+ * @param key_len length of the key
+ * @param pt plain text
+ * @param pt_len plain text length
+ * @param func callback for block cipher
+ */
+typedef size_t (*mcrypt_module_sk_mode_encrypt_t) (
+	mcrypt_module *module,
+	void *key, size_t key_len,
+	void *pt, size_t pt_len,
+	mcrypt_module_sk_block_encrypt_t func
+);
+
+/**
+ * Decrypt
+ * @param module module handle
+ * @param key encryption key
+ * @param key_len length of the key
+ * @param ct cipher text
+ * @param ct_len cipher text length
+ * @param func callback for block cipher
+ */
+typedef size_t (*mcrypt_module_sk_mode_decrypt_t) (
+	mcrypt_module *module,
+	void *key, size_t key_len,
+	void *ct, size_t ct_len,
+	mcrypt_module_sk_block_decrypt_t func
+);
+
+/**
  * @brief Secret key mode structure
  */
 struct _mcrypt_module_sk_mode {
@@ -117,10 +184,16 @@ struct _mcrypt_module_sk_mode {
 	struct {
 		/** initializing */
 		mcrypt_module_sk_mode_init_t init;
+		/** destroying */
+		mcrypt_module_sk_mode_destroy_t destroy;
 		/** set state */
 		mcrypt_module_sk_mode_set_state_t set_state;
 		/** get state */
 		mcrypt_module_sk_mode_set_state_t get_state;
+		/** encrypt */
+		mcrypt_module_sk_mode_encrypt_t encrypt;
+		/** decrypt */
+		mcrypt_module_sk_mode_decrypt_t decrypt;
 	} hooks;
 };
 
@@ -130,8 +203,14 @@ struct _mcrypt_module_sk_mode {
 struct _mcrypt_module {
 	/** module type */
 	mcrypt_module_type type;
-	/** mcrypt internal module */
-	void *mim;
+	/** module flags */
+	unsigned flags;
+	/** module name */
+	const char *name;
+	/** module version */
+	unsigned version;
+	/** mcrypt internal module context */
+	void *context;
 	/** type specific data */
 	union {
 		/** secret key mode data */
