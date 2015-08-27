@@ -63,7 +63,36 @@ mcrypt_always_inline static void memxor(
 
 /* MODULE STRUCTURES DEFINITIONS */
 
+/* Pre-definitions */
+typedef struct _mcrypt_module mcrypt_module;
+typedef struct _mcrypt_module_sk_mode mcrypt_module_sk_mode;
+
+/**
+ * @brief Module type
+ */
+typedef enum _mcrypt_module_type {
+	MCRYPT_MODULE_SK_BLOCK = 1,
+	MCRYPT_MODULE_SK_MODE,
+} mcrypt_module_type;
+
+
 /* Block */
+
+/**
+ * Init block context
+ * @param module module handle
+ * @return 0 on success, otherwise negative value
+ */
+typedef int (*mcrypt_module_sk_block_init_t) (
+	mcrypt_module *module);
+
+/**
+ * Destroy block context
+ * @param module module handle
+ * @return 0 on success, otherwise negative value
+ */
+typedef int (*mcrypt_module_sk_block_destroy_t) (
+	mcrypt_module *module);
 
 /**
  * Encrypt block
@@ -85,23 +114,33 @@ typedef size_t (*mcrypt_module_sk_block_encrypt_t) (
 	mcrypt_module *module,
 	void *key, void *ct);
 
+/**
+ * @brief secret key block structure
+ */
+struct _mcrypt_module_sk_block {
+	/** block size */
+	short int block_size;
+	/** key size */
+	short int key_size;
+	/** action hooks */
+	struct {
+		/** initializing */
+		mcrypt_module_sk_block_init_t init;
+		/** destroying */
+		mcrypt_module_sk_block_destroy_t destroy;
+		/** encrypt */
+		mcrypt_module_sk_block_encrypt_t encrypt;
+		/** decrypt */
+		mcrypt_module_sk_block_decrypt_t decrypt;
+	} hooks;
+};
+
 
 /* Mode */
 
 #define MCRYPT_MODULE_F_IV        1
 #define MCRYPT_MODULE_F_BLOCK     2
 #define MCRYPT_MODULE_F_BLOCK_ALG 4
-
-/* Pre-definitions */
-typedef struct _mcrypt_module mcrypt_module;
-typedef struct _mcrypt_module_sk_mode mcrypt_module_sk_mode;
-
-/**
- * @brief Module type
- */
-typedef enum _mcrypt_module_type {
-	MCRYPT_MODULE_SK_MODE = 1
-} mcrypt_module_type;
 
 /* Module Secret Key Mode */
 
@@ -113,7 +152,7 @@ typedef enum _mcrypt_module_type {
  * @param iv initial vector
  * @param iv_len initial vector length
  */
-typedef size_t (*mcrypt_module_sk_mode_init_t) (
+typedef int (*mcrypt_module_sk_mode_init_t) (
 	mcrypt_module *module,
 	void *key, size_t key_len,
 	void *iv, size_t iv_len);
@@ -213,6 +252,8 @@ struct _mcrypt_module {
 	void *context;
 	/** type specific data */
 	union {
+		/** secret key block data */
+		mcrypt_module_sk_block block;
 		/** secret key mode data */
 		mcrypt_module_sk_mode mode;
 	} module;
