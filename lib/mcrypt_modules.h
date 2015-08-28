@@ -81,10 +81,13 @@ typedef enum _mcrypt_module_type {
 /**
  * Init block context
  * @param module module handle
+ * @param key block key
+ * @param key_len key length
  * @return 0 on success, otherwise negative value
  */
 typedef int (*mcrypt_module_sk_block_init_t) (
-	mcrypt_module *module);
+	mcrypt_module *module,
+	void *key, size_t key_len);
 
 /**
  * Destroy block context
@@ -93,6 +96,26 @@ typedef int (*mcrypt_module_sk_block_init_t) (
  */
 typedef int (*mcrypt_module_sk_block_destroy_t) (
 	mcrypt_module *module);
+
+/**
+ * Set block key
+ * @param module module handle
+ * @param key block key
+ * @param key_len key length
+ * @return 0 on success, otherwise negative value
+ */
+typedef int (*mcrypt_module_sk_block_set_key_t) (
+	mcrypt_module *module,
+	void *key, size_t key_len);
+
+/**
+ * Set block key
+ * @param module module handle
+ * @param len number of keys in the returned array
+ * @return array of sizes
+ */
+typedef size_t *(*mcrypt_module_sk_block_get_supported_key_sizes_t) (
+	mcrypt_module *module, size_t *len);
 
 /**
  * Encrypt block
@@ -128,6 +151,11 @@ struct _mcrypt_module_sk_block {
 		mcrypt_module_sk_block_init_t init;
 		/** destroying */
 		mcrypt_module_sk_block_destroy_t destroy;
+		/** set key */
+		mcrypt_module_sk_block_set_key_t set_key;
+		/** get supported key sizes */
+		mcrypt_module_sk_block_get_supported_key_sizes_t
+		get_supported_key_sizes;
 		/** encrypt */
 		mcrypt_module_sk_block_encrypt_t encrypt;
 		/** decrypt */
