@@ -8,16 +8,47 @@
 #define mcrypt_always_inline inline
 #endif
 
+/**
+ * Rotate to left on 32bit word
+ * @param x value
+ * @param n number of bits to rotate
+ */
 #define mcrypt_rotl32(x,n) \
 	(((x) << ((word32)(n))) | ((x) >> (32 - (word32)(n))))
+
+/**
+ * Rotate to right on 32bit word
+ * @param x value
+ * @param n number of bits to rotate
+ */
 #define mcrypt_rotr32(x,n) \
 	(((x) >> ((word32)(n))) | ((x) << (32 - (word32)(n))))
+
+/**
+ * Rotate to left on 16bit word
+ * @param x value
+ * @param n number of bits to rotate
+ */
 #define mcrypt_rotl16(x,n) \
 	(((x) << ((word16)(n))) | ((x) >> (16 - (word16)(n))))
+
+/**
+ * Rotate to right on 16bit word
+ * @param x value
+ * @param n number of bits to rotate
+ */
 #define mcrypt_rotr16(x,n) \
 	(((x) >> ((word16)(n))) | ((x) << (16 - (word16)(n))))
 
-/* Use hardware rotations.. when available */
+
+/* SWAP operations
+ * - use hardware rotations when available */
+
+/**
+ * @def mcrypt_byteswap32(x)
+ * @brief A macro that swaps left and right half of the 32bit value.
+ */
+
 #ifdef swap32
 # define mcrypt_byteswap32(x) swap32(x)
 #else
@@ -34,6 +65,11 @@
 # endif
 #endif
 
+/**
+ * @def mcrypt_byteswap16(x)
+ * @brief A macro that swaps left and right half of the 16bit value.
+ */
+
 #ifdef swap16
 # define mcrypt_byteswap16(x) swap16(x)
 #else
@@ -49,8 +85,18 @@
 # endif
 #endif
 
+/**
+ * Zero memory
+ * @param x value
+ * @param y size
+ */
 #define mcrypt_bzero(x, y) memset(x, 0, y)
 
+/**
+ * Memory XOR operation
+ * @param o1 first element
+ * @param o2 secodn element
+ */
 mcrypt_always_inline static void memxor(
 	unsigned char *o1, unsigned char *o2, int length)
 {
